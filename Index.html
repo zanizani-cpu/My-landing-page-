@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Choose your favorite gift card — Amazon, Google Play, Apple, PlayStation, Xbox. Complete a simple offer to qualify. Clean, honest, fast.">
+  <title>Gift Card Rewards — Choose & Unlock</title>
+  <!-- Preconnect for faster font loading (optional, but keeps design sharp) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Modern, clean font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) for visual flair without heavy SVGs -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ========== RESET & GLOBAL ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0b0d15;
+      --bg-card: #141824;
+      --bg-light: #1e2330;
+      --primary-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+      --accent-glow: #a78bfa;
+      --text-primary: #ffffff;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --border-subtle: #2a2f3f;
+      --success: #10b981;
+      --radius-lg: 1.5rem;
+      --radius-md: 1rem;
+      --radius-sm: 0.75rem;
+      --shadow-card: 0 20px 35px -8px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03);
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0 1rem 2rem;
+      background-image: radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 100%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0.5rem 0;
+    }
+
+    /* ========== TYPOGRAPHY & UTILS ========== */
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      font-weight: 800;
+      background: linear-gradient(to right, #ffffff, #d9e2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      margin-bottom: 1.25rem;
+      color: #f0f2ff;
+    }
+
+    .subhead {
+      font-size: clamp(1rem, 3.5vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-weight: 400;
+    }
+
+    .section {
+      margin: 3.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 i {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-right: 0.5rem;
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      font-family: var(--font-family);
+      padding: 0.9rem 2rem;
+      border-radius: 3rem;
+      border: none;
+      background: var(--primary-gradient);
+      color: white;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      box-shadow: 0 8px 20px -8px rgba(139, 92, 246, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      letter-spacing: -0.01em;
+    }
+
+    .btn:hover, .btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px -8px rgba(139, 92, 246, 0.7);
+      filter: brightness(1.05);
+    }
+
+    .btn:active {
+      transform: translateY(0px);
+      box-shadow: 0 8px 16px -8px rgba(139, 92, 246, 0.6);
+    }
+
+    .btn-secondary {
+      background: var(--bg-light);
+      box-shadow: none;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .btn-secondary:hover {
+      background: #2a3142;
+      box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-sm {
+      padding: 0.6rem 1.4rem;
+      font-size: 0.95rem;
+    }
+
+    .btn-block {
+      display: flex;
+      width: 100%;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    /* gift card strip (decorative) */
+    .gift-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem 1.2rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .gift-icon {
+      background: var(--bg-card);
+      padding: 0.5rem 1rem;
+      border-radius: 3rem;
+      border: 1px solid var(--border-subtle);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #d1d5db;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .gift-icon i {
+      font-size: 1.2rem;
+    }
+
+    .fa-amazon { color: #ff9900; }
+    .fa-google-play { color: #34a853; }
+    .fa-apple { color: #ffffff; }
+    .fa-playstation { color: #0070d1; }
+    .fa-xbox { color: #107c10; }
+
+    /* ========== GIFT CARD GRID ========== */
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .gift-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 0.75rem 1rem;
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(2px);
+    }
+
+    .gift-card:hover {
+      border-color: #4f5a77;
+      transform: translateY(-3px);
+      background: #1a1f2e;
+    }
+
+    .gift-card .card-icon {
+      font-size: 2.8rem;
+      margin-bottom: 0.65rem;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gift-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: #f3f4f6;
+    }
+
+    .gift-card .value-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #a5b4fc;
+      background: rgba(59, 130, 246, 0.15);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2rem;
+      margin-bottom: 0.9rem;
+      display: inline-block;
+    }
+
+    .gift-card .btn {
+      width: 100%;
+      padding: 0.6rem 0.5rem;
+      font-size: 0.9rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      background: var(--bg-light);
+      border: 1px solid #3b4255;
+      box-shadow: none;
+      color: #e5e7eb;
+    }
+
+    .gift-card .btn:hover {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      box-shadow: 0 6px 14px -4px #8b5cf6;
+      color: white;
+    }
+
+    /* ========== HOW IT WORKS ========== */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-card);
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+    }
+
+    .step-number {
+      background: var(--primary-gradient);
+      width: 2.5rem;
+      height: 2.5rem;
+      min-width: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: white;
+      box-shadow: 0 8px 16px -6px #8b5cf6;
+    }
+
+    .step-text h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .step-text p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* ========== CTA BLOCK ========== */
+    .cta-block {
+      background: linear-gradient(145deg, #141824, #1a1f2e);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.8);
+      margin: 2.5rem 0;
+    }
+
+    .cta-block .btn {
+      font-size: 1.25rem;
+      padding: 1.1rem 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      margin: 0.5rem auto 0;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      box-shadow: 0 12px 28px -6px #a78bfa;
+    }
+
+    .cta-block p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 1rem auto 0;
+      font-size: 0.9rem;
+    }
+
+    /* ========== TRUST SECTION ========== */
+    .trust-card {
+      background: rgba(30, 35, 48, 0.8);
+      border-radius: var(--radius-md);
+      padding: 1.75rem 1.5rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(4px);
+    }
+
+    .trust-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #d1d5db;
+    }
+
+    .trust-card h3 i {
+      color: var(--success);
+    }
+
+    .trust-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .trust-card li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      color: #b0b7c3;
+    }
+
+    .trust-card li i {
+      color: var(--accent-glow);
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 1rem 0;
+      border-top: 1px solid #1e2330;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (min-width: 640px) {
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      .step-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+      }
+      .step-number {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gift-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .gift-card {
+        padding: 1rem 0.5rem;
+      }
+      .gift-card .card-icon {
+        font-size: 2.2rem;
+        height: 2.8rem;
+      }
+      .gift-card .btn {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.3rem;
+      }
+      .btn {
+        padding: 0.85rem 1.5rem;
+      }
+      .cta-block .btn {
+        font-size: 1.1rem;
+        padding: 0.9rem 1.5rem;
+      }
+    }
+
+    /* for accessibility */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 4px;
+    }
+
+    /* subtle loading state */
+    .btn.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+      <h1>Get Your Gift Card Today!</h1>
+      <p class="subhead">Choose your favorite gift card and follow a few simple steps.</p>
+
+      <!-- visual strip -->
+      <div class="gift-strip">
+        <span class="gift-icon"><i class="fab fa-amazon"></i> Amazon</span>
+        <span class="gift-icon"><i class="fab fa-google-play"></i> Google Play</span>
+        <span class="gift-icon"><i class="fab fa-apple"></i> Apple</span>
+        <span class="gift-icon"><i class="fab fa-playstation"></i> PlayStation</span>
+        <span class="gift-icon"><i class="fab fa-xbox"></i> Xbox</span>
+      </div>
+    </section>
+
+    <!-- ========== GIFT CARD SELECTION ========== -->
+    <section class="section" id="gift-selection">
+      <div class="section-header">
+        <h2><i class="fas fa-gift"></i> Choose your gift card</h2>
+      </div>
+
+      <div class="gift-grid" id="giftGrid">
+        <!-- Amazon -->
+        <div class="gift-card" data-card="amazon">
+          <div class="card-icon"><i class="fab fa-amazon fa-amazon"></i></div>
+          <h3>Amazon</h3>
+          <span class="value-tag">$25–$100</span>
+          <button class="btn select-btn" data-card="amazon" aria-label="Select Amazon gift card">Select</button>
+        </div>
+        <!-- Google Play -->
+        <div class="gift-card" data-card="google-play">
+          <div class="card-icon"><i class="fab fa-google-play"></i></div>
+          <h3>Google Play</h3>
+          <span class="value-tag">$10–$50</span>
+          <button class="btn select-btn" data-card="google-play" aria-label="Select Google Play gift card">Select</button>
+        </div>
+        <!-- Apple -->
+        <div class="gift-card" data-card="apple">
+          <div class="card-icon"><i class="fab fa-apple"></i></div>
+          <h3>Apple</h3>
+          <span class="value-tag">$15–$100</span>
+          <button class="btn select-btn" data-card="apple" aria-label="Select Apple gift card">Select</button>
+        </div>
+        <!-- PlayStation -->
+        <div class="gift-card" data-card="playstation">
+          <div class="card-icon"><i class="fab fa-playstation"></i></div>
+          <h3>PlayStation</h3>
+          <span class="value-tag">$20–$75</span>
+          <button class="btn select-btn" data-card="playstation" aria-label="Select PlayStation gift card">Select</button>
+        </div>
+        <!-- Xbox -->
+        <div class="gift-card" data-card="xbox">
+          <div class="card-icon"><i class="fab fa-xbox"></i></div>
+          <h3>Xbox</h3>
+          <span class="value-tag">$20–$70</span>
+          <button class="btn select-btn" data-card="xbox" aria-label="Select Xbox gift card">Select</button>
+        </div>
+      </div>
+      <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: -0.5rem;">
+        <i class="fas fa-check-circle" style="color: var(--success);"></i> Select a card to continue
+      </p>
+    </section>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section class="section" id="how-it-works">
+      <div class="section-header">
+        <h2><i class="fas fa-list-ol"></i> How it works</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-text">
+            <h4>Choose gift card</h4>
+            <p>Pick your favorite brand from the selection above.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-text">
+            <h4>Complete an offer</h4>
+            <p>Finish a simple, available offer from our partners.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-text">
+            <h4>Follow instructions</h4>
+            <p>Check your eligibility and follow the offer steps.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CALL TO ACTION ========== -->
+    <section class="cta-block" id="cta-section">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Ready to unlock your gift card?</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Complete the offer to qualify.</p>
+
+      <button id="mainContinueBtn" class="btn" aria-label="Continue now to complete offer">
+        <i class="fas fa-arrow-right"></i> Continue Now
+      </button>
+
+      <p style="margin-top: 1.25rem; font-size: 0.8rem;">
+        <i class="fas fa-shield-alt"></i> You'll be redirected to a secure offer page.
+      </p>
+    </section>
+
+    <!-- ========== TRUST SECTION ========== -->
+    <section class="section" id="trust">
+      <div class="trust-card">
+        <h3><i class="fas fa-shield-check" style="color: #10b981;"></i> Clear & honest</h3>
+        <p style="color: #b0b7c3; font-size: 0.95rem;">We believe in transparency. Here’s exactly what to expect:</p>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> <span><strong>No fake testimonials</strong> — we don't manufacture reviews or winners.</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>No fake countdowns or false scarcity</strong> — offers are available as long as they are listed.</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Real requirements:</strong> To qualify, you must complete one of the available offers from our partner network and follow all instructions.</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Eligibility:</strong> Gift card availability depends on your region and the offer completion. Some offers may require a purchase or sign-up.</span></li>
+        </ul>
+        <div class="disclaimer">
+          <i class="fas fa-info-circle"></i> This site is not affiliated with Amazon, Google, Apple, PlayStation, or Xbox. Gift cards are provided by third-party networks. We do not guarantee a specific value; offers vary.
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+      <p>© 2025 Gift Card Rewards. All rights reserved.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.7rem;">This is a legitimate CPA offer landing page. No fake claims.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    (function() {
+      // ============================================
+      // CONFIGURATION - Edit this for your CPA link
+      // ============================================
+      const CPA_CONFIG = {
+        // Replace this with your OGAds / CPA offer URL
+        offerURL: 'https://your-cpa-offer-link.com/offer', 
+        // Default card selection (used if user hasn't chosen)
+        defaultCard: 'amazon',
+        // If true, will append ?card=selectedCard to the offer URL for tracking
+        trackCard: true
+      };
+
+      // DOM elements
+      const giftGrid = document.getElementById('giftGrid');
+      const mainContinueBtn = document.getElementById('mainContinueBtn');
+      const selectButtons = document.querySelectorAll('.select-btn');
+      
+      // State: currently selected card
+      let selectedCard = localStorage.getItem('selectedGiftCard') || CPA_CONFIG.defaultCard;
+
+      // Helper to update UI highlight based on selected card
+      function highlightSelectedCard() {
+        // Remove 'selected' style from all cards (we'll use a data attribute)
+        document.querySelectorAll('.gift-card').forEach(card => {
+          card.style.borderColor = 'var(--border-subtle)';
+          card.style.background = 'var(--bg-card)';
+        });
+
+        // Find the card with matching data-card and add visual accent
+        const activeCardEl = document.querySelector(`.gift-card[data-card="${selectedCard}"]`);
+        if (activeCardEl) {
+          activeCardEl.style.borderColor = '#8b5cf6';
+          activeCardEl.style.background = '#1e2335';
+          activeCardEl.style.boxShadow = '0 0 0 1px #8b5cf6, 0 20px 35px -8px rgba(139, 92, 246, 0.3)';
+        }
+
+        // Optional: change button text style for the selected card's button
+        document.querySelectorAll('.select-btn').forEach(btn => {
+          if (btn.dataset.card === selectedCard) {
+            btn.textContent = 'Selected ✓';
+            btn.style.background = 'var(--primary-gradient)';
+            btn.style.color = 'white';
+            btn.style.borderColor = 'transparent';
+          } else {
+            btn.textContent = 'Select';
+            btn.style.background = 'var(--bg-light)';
+            btn.style.color = '#e5e7eb';
+            btn.style.borderColor = '#3b4255';
+          }
+        });
+      }
+
+      // Set selected card and update UI + storage
+      function setSelectedCard(cardName) {
+        selectedCard = cardName;
+        localStorage.setItem('selectedGiftCard', cardName);
+        highlightSelectedCard();
+      }
+
+      // Handle click on any "Select" button
+      selectButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const card = this.dataset.card;
+          if (card) {
+            setSelectedCard(card);
+          }
+        });
+      });
+
+      // Also allow clicking on the whole gift card (except the button itself, but it bubbles)
+      document.querySelectorAll('.gift-card').forEach(cardDiv => {
+        cardDiv.addEventListener('click', function(e) {
+          // If the click is on the button, let the button handler manage it (avoid double)
+          if (e.target.classList.contains('select-btn')) return;
+          const card = this.dataset.card;
+          if (card) {
+            setSelectedCard(card);
+          }
+        });
+      });
+
+      // Main CTA button - redirect to offer URL with tracking
+      mainContinueBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Build the final URL
+        let finalURL = CPA_CONFIG.offerURL;
+        
+        // Append card parameter for tracking if enabled
+        if (CPA_CONFIG.trackCard && selectedCard) {
+          try {
+            const url = new URL(finalURL);
+            url.searchParams.set('card', selectedCard);
+            finalURL = url.toString();
+          } catch (err) {
+            // Fallback: if URL is invalid, just append with ? or &
+            const separator = finalURL.includes('?') ? '&' : '?';
+            finalURL = finalURL + separator + 'card=' + encodeURIComponent(selectedCard);
+          }
+        }
+
+        // Simulate loading state (short delay for smooth UX)
+        mainContinueBtn.classList.add('loading');
+        mainContinueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+
+        // Redirect after a tiny delay so user sees feedback
+        setTimeout(() => {
+          window.location.href = finalURL;
+        }, 300);
+      });
+
+      // On page load, restore selection or default
+      // Ensure the selected card exists in the DOM
+      const cardExists = document.querySelector(`.gift-card[data-card="${selectedCard}"]`);
+      if (!cardExists) {
+        selectedCard = CPA_CONFIG.defaultCard;
+        localStorage.setItem('selectedGiftCard', selectedCard);
+      }
+      highlightSelectedCard();
+
+      // Optional: if user clicks any button that says "Continue Now" (we have only one)
+      // but in case of future duplicates, we could use a class. Already handled.
+
+      // Also, make all secondary buttons functional? Only select and main CTA exist.
+
+      // Edge: if localStorage has a card not in list, reset to default
+      // Already covered.
+
+      // Export for debugging (optional)
+      console.log('CPA Landing Page ready. Selected card:', selectedCard);
+    })();
+  </script>
+</body>
+</html>
+```
+<style>
+  html {
+  height: 100%;
+  background: 50% 50% no-repeat
+    url('data:image/svg+xml,<svg viewBox="-20 -5 60 40" width="140" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M1 8l11-7 11 7v8l-11 7-11-7zm0 0l11 8 11-8m0 8L12 8 1 16M12 1v7m0 8v7" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/><text x="-12" y="32" font-size="5" font-family="monospace" fill="currentColor">Built on CodePen</text></svg>');
+}
+
+</style>
