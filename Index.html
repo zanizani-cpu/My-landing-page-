@@ -716,35 +716,11 @@ selectButtons.forEach(btn => {
         });
       });
 
-      // Main CTA button - redirect to offer URL with tracking
-      mainContinueBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        // Build the final URL
-        let finalURL = CPA_CONFIG.offerURL;
-        
-        // Append card parameter for tracking if enabled
-        if (CPA_CONFIG.trackCard && selectedCard) {
-          try {
-            const url = new URL(finalURL);
-            url.searchParams.set('card', selectedCard);
-            finalURL = url.toString();
-          } catch (err) {
-            // Fallback: if URL is invalid, just append with ? or &
-            const separator = finalURL.includes('?') ? '&' : '?';
-            finalURL = finalURL + separator + 'card=' + encodeURIComponent(selectedCard);
-          }
-        }
-
-        // Simulate loading state (short delay for smooth UX)
-        mainContinueBtn.classList.add('loading');
-        mainContinueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
-
-        // Redirect after a tiny delay so user sees feedback
-        setTimeout(() => {
-          window.location.href = finalURL;
-        }, 300);
-      });
+      // Main CTA button - open OGAds locker
+mainContinueBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  window.open('https://trckapp.org/cl/i/ex15od', '_blank');
+});
 
       // On page load, restore selection or default
       // Ensure the selected card exists in the DOM
